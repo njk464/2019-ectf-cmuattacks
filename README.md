@@ -5,8 +5,8 @@ Repository for keeping track of our attack scripts during the Embedded CTF
 
 Before running any of the scripts in this repository please run the following commands
 ```
-sudo apt install python-pip
-pip install -r requirements.txt
+sudo apt install python-pip3
+pip3 install -r requirements.txt
 ```
 
 ## Brute Force Logins script

