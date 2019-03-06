@@ -13,6 +13,10 @@ pip3 install -r requirements.txt
 
 Needs to be run with sudo priveleges so `/dev/ttyUSB1` can be accessed.
 
+# Updated Qemu
+
+Qemu can now run directly from files in the attack repository. If you want to copy files over from a newly created team image in `/home/vagrant/MES` please checkout the README in the qemu directory
+
 # Possible Attacks
 
 There are several key goals that we want to achieve in the attacks:

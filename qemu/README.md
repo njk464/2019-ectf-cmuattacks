@@ -3,18 +3,21 @@ Follow the instructions to create qemu machine emulator for loading u-boot/mesh 
 
 Note: Run `petalinuxenv` in the shell before running `qemu` or `petalinux-config`. Ensure petalinux environment is set for every new shell session.
 
+## Copying files from MES to here
+  * To copy the important files from MES into the attacks repository please run `./copy_files TEAM_DIR`. This will copy the necessary files for qemu into a new directory (../TEAM_DIR)
+
 ## Known Issues
   * When the linux kernel is loaded, an i2c driver sends a timout message to dmesg (stdout) every 5 seconds. This message is printed out on the serial console which makes it hard to type shell commands, since the error messages fill up the screen. 
 
 ## Setting SDCARD Image file
-  * Run the shell script `./create-sd.sh` to create an sdcard raw image file - `sdcard.img`. The script will copy the games from `/home/vagrant/MES/Arty-Z7-10/tools/files/generated/games/` folder. 
+  * Run the shell script `./create-sd.sh TEAM_DIR` to create an sdcard raw image file - `sdcard.img`. The script will copy the games from `../TEAM_DIR/games` folder. 
 
 ## Launch Qemu
   * Ensure u-boot, linux kernel and the device tree is built using provisionSystem.py. Check if the following files exists:
-    * `/home/vagrant/MES/Arty-Z7-10/images/linux/u-boot.elf`
-    * `/home/vagrant/MES/Arty-Z7-10/images/linux/image.ub`
-    * `/home/vagrant/MES/Arty-Z7-10/images/linux/system.dtb`
-  * Start qemu by running the `./start-qemu.sh`. 
+    * `../TEAM_DIR/u-boot.elf`
+    * `../TEAM_DIR/image.ub`
+    * `../TEAM_DIR/system.dtb`
+  * Start qemu by running the `./start-qemu.sh TEAM_DIR`. 
 
 ## Petalinux config (in case of spi error)
   * Checking out this branch should inherit the changes to petalinux config. If QEMU/U-BOOT THOWS AN SPI ERROR ON THE SCREEN, follow the below steps and rebuild the kernel and dtb (run the provisionSystem.py again).
@@ -36,10 +39,10 @@ Launch `arm-linux-gnueabihf-gdb` client to attach to the qemu gdb server which i
 
 (gdb) target remote localhost:1234
 
-(gdb) add-symbol-file ~/MES/Arty-Z7-10/images/linux/u-boot.elf 0x1fb35000
-add symbol table from file "/home/vagrant/MES/Arty-Z7-10/images/linux/u-boot.elf" 
+(gdb) add-symbol-file ../VT/u-boot.elf 0x1fb35000
+add symbol table from file "/home/vagrant/2019-ectf-cmuattacks/VT/u-boot.elf" 
 at .text_addr = 0x1fb35000 (y or n): y
-Reading symbols from /home/vagrant/MES/Arty-Z7-10/images/linux/u-boot.elf ...done
+Reading symbols from /home/vagrant/2019-ectf-cmuattacks/VT/u-boot.elf ...done
 
 (gdb)b mesh_loop
 (gdb)c

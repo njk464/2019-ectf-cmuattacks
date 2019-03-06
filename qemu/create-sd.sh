@@ -1,5 +1,13 @@
 #!/bin/bash
 
+
+if [ "$#" -ne 1 ]; then
+    echo "Illegal number of parameters"
+    exit 0
+fi
+
+DIR=../$1
+
 set -e
 
 # create an sdcard image (1.0G)
@@ -23,7 +31,7 @@ sudo mkfs.ext4 ${DEVICE}p2
 echo "Mounting and copying the provisioned games to the partition 2"
 sudo mkdir -p /mnt/qemu/games
 sudo mount -o loop ${DEVICE}p2 /mnt/qemu/games
-sudo cp -r /home/vagrant/MES/tools/files/generated/games/* /mnt/qemu/games/
+sudo cp -r $DIR/games/* /mnt/qemu/games/
 
 # unmount and remove loopback device
 sudo umount /mnt/qemu/games
