@@ -4,7 +4,7 @@ Follow the instructions to create qemu machine emulator for loading u-boot/mesh 
 Note: Run `petalinuxenv` in the shell before running `qemu` or `petalinux-config`. Ensure petalinux environment is set for every new shell session.
 
 ## Copying files from MES to here
-  * To copy the important files from MES into the attacks repository please run `./copy_files TEAM_DIR`. This will copy the necessary files for qemu into a new directory (../TEAM_DIR)
+  * To copy the important files from MES into the attacks repository please run `./copy_files.sh TEAM_DIR`. This will copy the necessary files for qemu into a new directory (../TEAM_DIR)
 
 ## Known Issues
   * When the linux kernel is loaded, an i2c driver sends a timout message to dmesg (stdout) every 5 seconds. This message is printed out on the serial console which makes it hard to type shell commands, since the error messages fill up the screen. 
