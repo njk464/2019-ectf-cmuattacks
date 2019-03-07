@@ -1,2 +1,3 @@
 # ignore the following files
+temp_gdb_commands
 *.img

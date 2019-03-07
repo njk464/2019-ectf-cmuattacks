@@ -30,23 +30,9 @@ Note: Run `petalinuxenv` in the shell before running `qemu` or `petalinux-config
 Before starting, make sure to set the petalinux environment variables using `petalinuxenv`. Run qemu by passing the `gdb` as the first argument. 
 
 ```bash
-~/MES/qemu> ./start-qemu.sh gdb
+~/MES/qemu> ./start-qemu.sh TEAM_DIR gdb
 ```
-Launch `arm-linux-gnueabihf-gdb` client to attach to the qemu gdb server which is listening to the port 1234. 
-
-```bash
-~/MES> arm-linux-gnueabihf-gdb 
-
-(gdb) target remote localhost:1234
-
-(gdb) add-symbol-file ../VT/u-boot.elf 0x1fb35000
-add symbol table from file "/home/vagrant/2019-ectf-cmuattacks/VT/u-boot.elf" 
-at .text_addr = 0x1fb35000 (y or n): y
-Reading symbols from /home/vagrant/2019-ectf-cmuattacks/VT/u-boot.elf ...done
-
-(gdb)b mesh_loop
-(gdb)c
-```
+Launch `./run_gdb TEAM_DIR` in a separate terminal window and make sure that you have run `petalinuxenv`
 
 *** 
 

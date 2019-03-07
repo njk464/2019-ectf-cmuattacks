@@ -1,0 +1,3 @@
+target remote localhost:1234
+add-symbol-file ../RIT/u-boot.elf 0x1fb35000
+
