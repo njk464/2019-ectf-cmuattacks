@@ -10,7 +10,8 @@ DIR=../$1
 tmp_gdb=./temp_gdb_commands
 
 echo "target remote localhost:1234" > $tmp_gdb
-echo "add-symbol-file $DIR/u-boot.elf 0x1fb35000" >> $tmp_gdb
+echo "add-symbol-file $DIR/u-boot.elf 0x1fb41000" >> $tmp_gdb
+#echo "add-symbol-file $DIR/u-boot.elf 0x1fb35000" >> $tmp_gdb
 
 arm-linux-gnueabihf-gdb -x $tmp_gdb
 

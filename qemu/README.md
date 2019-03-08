@@ -27,12 +27,24 @@ Note: Run `petalinuxenv` in the shell before running `qemu` or `petalinux-config
     4. save and exit
 
 # Run GDB with QEMU 
-Before starting, make sure to set the petalinux environment variables using `petalinuxenv`. Run qemu by passing the `gdb` as the first argument. 
+Before starting, make sure to set the petalinux environment variables using `petalinuxenv`. Run qemu by passing the `gdb` as the second or third argument. 
 
 ```bash
 ~/MES/qemu> ./start-qemu.sh TEAM_DIR gdb
 ```
 Launch `./run_gdb TEAM_DIR` in a separate terminal window and make sure that you have run `petalinuxenv`
+
+# Run QEMU with a Serial device
+Before starting, make sure to set the petalinux environment variables using `petalinuxenv`. Run qemu by passing the `serial` as the second or third argument. 
+
+```bash
+~/2019-ectf-cmuattacks/qemu> ./start-qemu.sh TEAM_DIR serial
+```
+This will cause the qemu session to read and write from `/dev/pts/3`. Which can be accessed in pythonlike this
+
+```python
+ser = serial.Serial("/dev/pts/3")
+```
 
 *** 
 
