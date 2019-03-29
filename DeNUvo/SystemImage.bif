@@ -1,0 +1,12 @@
+
+MITRE_Entertainment_System: {
+    [bootloader] /home/vagrant/2019-ectf-cmuattacks/DeNUvo/zynq_fsbl.elf
+    // Participants Bitstream
+    /home/vagrant/2019-ectf-cmuattacks/DeNUvo/Arty_Z7_10_wrapper.bit
+    // Paritcipants Images
+    /home/vagrant/2019-ectf-cmuattacks/DeNUvo/u-boot.elf
+    [load=0x10008000] /home/vagrant/2019-ectf-cmuattacks/DeNUvo/kernel.enc
+    [load=0x12000000] /home/vagrant/2019-ectf-cmuattacks/DeNUvo/devicetree.enc
+    [load=0x12100000] /home/vagrant/2019-ectf-cmuattacks/DeNUvo/initrd.enc
+}
+    

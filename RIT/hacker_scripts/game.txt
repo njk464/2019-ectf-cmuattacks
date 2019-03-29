@@ -1,3 +1,0 @@
-/home/vagrant/MES/tools/demo_files/jailbreak_tool hackermod-v1.0 1.0 demo
-/home/vagrant/MES/tools/demo_files/decrypted_pinbypass-v1.0 ipflag 1.0 demo
-/home/vagrant/MES/tools/demo_files/decrypted_rollback-v1.0 rollback 2.0 demo
