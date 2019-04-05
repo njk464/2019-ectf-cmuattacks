@@ -45,7 +45,7 @@ def setup_sdcard(device):
     subprocess.check_call(f"sudo mkfs.ext2 -L games {device}2 > /dev/null", shell=True)
     subprocess.check_call(f"sudo tune2fs -e panic {device}2 >/dev/null", shell=True)
     # put install data in the last partition
-    subprocess.check_call(f"sudo dd if={storage of={device}3 bs=1M > /dev/null", shell=True)
+    subprocess.check_call(f"sudo dd if=storage of={device}3 bs=1M > /dev/null", shell=True)
 
     print("Done Formatting SD Card")
     print("    BOOT : %s1" % (device))
